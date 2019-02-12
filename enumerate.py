@@ -31,8 +31,8 @@ for index, item in enumerate('my data'):
     
     
     
-def my_enumerate(it):
-    return zip(range(len(it)), it);
+def my_enumerate(it, start=0):
+    return zip(range(start, start+len(it)), it);
 
 
 for index, item in my_enumerate('my data'):
