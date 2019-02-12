@@ -12,6 +12,13 @@ def get_first_element(entry):
 def get_second_element(entry):
     return entry[1]
 
+def key(n):
+    
+    def key_giver(entry):
+        return entry[n]
+
+    return key_giver
+
 with open ('/etc/passwd', 'r') as file:
     users = []
     users_dict = {}
@@ -20,7 +27,7 @@ with open ('/etc/passwd', 'r') as file:
         users.append((int(user_id), user_name))
         users_dict[int(user_id)]=user_name
     
-users.sort(key=get_second_element)
+users.sort(key=key(0))
 user_dict_items = sorted(users_dict.items())
 print('Sorted list:\n')
 for uid, uname in users:
