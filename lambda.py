@@ -8,6 +8,7 @@ Created on Wed Feb 13 11:48:04 2019
 
 from functools import reduce
 from operator import add
+from operator import mul
 
 lambda a,b,c: a*b+c
 (lambda a,b,c: a*b+c)(2,3,4)
@@ -29,3 +30,7 @@ list(filter(lambda x:x%2, range(20)))
 #Applies the function in sequence
 reduce(lambda a, b:a+b, range(10))
 reduce(add, range(10))
+
+#Calculation a factorial of 100
+reduce(mul, range(1, 101))
+reduce(lambda a,b:a*b, range(1, 101))
