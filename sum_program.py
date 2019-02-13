@@ -10,8 +10,10 @@ from functools import reduce
 
 with open ('numbers.txt', 'r') as file:
     for line in file:
-        print(reduce(add, map(float, line.split(' '))))
+        #print(sum(map(float, line.split())))
+        print(reduce(add, map(float, line.split()), 0)) #Optional initial value for reduce adds support for empty line
 
 
+        
         
             
