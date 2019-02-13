@@ -9,10 +9,9 @@ from operator import add
 from functools import reduce
 
 with open ('numbers.txt', 'r') as file:
-    l = []
     for line in file:
-        l.append(reduce(add, map(float, line.split(' '))))
+        print(reduce(add, map(float, line.split(' '))))
 
-print(l)
+
         
             
