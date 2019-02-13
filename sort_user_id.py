@@ -5,6 +5,8 @@ Created on Tue Feb 12 14:52:45 2019
 
 @author: trn2503
 """
+from functools import partial
+from operator import itemgetter
 
 def get_first_element(entry):
     return entry[0]
@@ -12,12 +14,22 @@ def get_first_element(entry):
 def get_second_element(entry):
     return entry[1]
 
-def key(n):
-    
+
+def key_factory(n):
+    """
+    Currying is what we are doing here
+    writing a two parameter function and 
+    representing them as a chain of 2 functions
+    so we can feed the parameters at any point in time
+    """    
     def key_giver(entry):
         return entry[n]
 
     return key_giver
+
+def key(n, pair):
+        return pair[n]
+
 
 with open ('/etc/passwd', 'r') as file:
     users = []
@@ -27,7 +39,10 @@ with open ('/etc/passwd', 'r') as file:
         users.append((int(user_id), user_name))
         users_dict[int(user_id)]=user_name
     
-users.sort(key=key(0))
+#users.sort(key=key_factory(0)) #This is a very valid solution
+#users.sort(key=partial(key, 0))
+users.sort(key=itemgetter(0)) #We can use an already existing function
+users.sort(key=(lambda pair:pair[0]))
 user_dict_items = sorted(users_dict.items())
 print('Sorted list:\n')
 for uid, uname in users:
