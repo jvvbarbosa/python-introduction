@@ -27,6 +27,9 @@ class AddCounter(Counter):
     def __repr__(self):
         return 'AddCounter({.count})'.format(self)
     
+    def __str__(self):
+        return '{.count}'.format(self)
+    
     def __add__(self, other):
         return AddCounter(self.count+other.count)
     
