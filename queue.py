@@ -19,3 +19,17 @@ class Queue:
             return self.queue.pop(0)
         except IndexError:
             raise
+            
+            
+            
+class EmergencyQueue(Queue):
+    
+    def push(self, item):
+        self.queue.insert(0, item)
+        
+class NoisyQueue(Queue):
+    
+    def add(self, item):
+        Queue.add(self, item)
+        print('Added the following item to queue:')
+        print(item)

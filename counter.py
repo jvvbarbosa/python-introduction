@@ -21,3 +21,11 @@ class Counter:
 
     def down(self, n=1):
         self.count -= n
+        
+class AddCounter(Counter):
+    
+    def __repr__(self):
+        return 'AddCounter({.count})'.format(self)
+    
+    def __add__(self, other):
+        return AddCounter(self.count+other.count)
