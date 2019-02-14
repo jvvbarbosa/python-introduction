@@ -1,4 +1,4 @@
-from operator import itemgetter 
+#from operator import itemgetter 
 
 EmptyQueue = []
 
@@ -6,11 +6,11 @@ class EmptyQueue(Exception):
         pass
     
     
-class PriorityQueue():
+class PriorityQueue_very_slow():
     pass
 
     def add(self, a, b=2):
-        if (b > 4) or ( b < 0):
+        if not (0 <= b <= 4):
             raise ValueError('Priority out of bounds', b)
         elif not isinstance(b, int):
             raise TypeError('Priority must be an integer. Received', type(b), b)
@@ -20,8 +20,16 @@ class PriorityQueue():
         except ValueError:
             raise TypeError
             
-        self._q.append((a,b))
-        self._q.sort(key=itemgetter(1))
+        if not self._q:
+            self._q.append((a,b))
+        else:
+            ind = 0
+            for val, prio in self._q:
+                if prio > b:
+                    break
+            
+                ind += 1
+            self._q.insert(ind, (a, b))
         
     def __init__(self):
         self._q = []
@@ -33,4 +41,27 @@ class PriorityQueue():
         try:
             return self._q.pop(0)[0]
         except IndexError:
+            raise EmptyQueue('There are no elements in the queue')
+            
+            
+
+class PriorityQueue():
+
+    def add(self, a, b=2):
+        if not (0 <= b <= 4):
+            raise ValueError('Priority out of bounds', b)
+        self._q[b].append(a)
+            
+        
+    def __init__(self):
+        self._q = ([],[],[],[],[])
+ 
+    def __len__(self):
+        return sum(map(len, self._q))
+        
+    def pop(self):
+        for q in self._q:
+            if q:
+                return q.pop(0)
+        else:
             raise EmptyQueue('There are no elements in the queue')
