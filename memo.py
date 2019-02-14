@@ -13,13 +13,21 @@ def fib(n):
         return n
     return fib(n-1) + fib(n - 2) 
 
+def fibi(n):
+    current, next = 0, 1
+    
+    while(n > 0):
+        current, next = next, current + next
+        n -= 1
+    return current
+
 #fib(36) takes 4 seconds to run
 #it would be cool to cache a call
 #We write a memorizer cabaple of storing answers from a func
 #This memorizer returns a better version of a func that caches its own results
 
-def memof(fn):
-    cache = {}
+def memo(fn):
+    cache = {} #because of LNGB this cache is still going to be available in the proxy function returned
     def proxy(*args):
         if args not in cache:
             cache[args] = fn(*args)
@@ -28,7 +36,7 @@ def memof(fn):
 
 
 #The same memoizer returned as a class
-class memo():
+class Memo():
     
     def __init__(self, fn):
         self._cache = {}
@@ -46,7 +54,8 @@ def time(func, *args, **kwds):
     start = timer()
     res = func(*args, **kwds)
     stop = timer()
-    return res, stop - start
+    
+    return stop - start, res
 
 
 #Input is a lambda
