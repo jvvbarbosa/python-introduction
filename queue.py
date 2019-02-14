@@ -31,5 +31,4 @@ class NoisyQueue(Queue):
     
     def add(self, item):
         Queue.add(self, item)
-        print('Added the following item to queue:')
-        print(item)
+        print('Added the following item to queue:', item)
