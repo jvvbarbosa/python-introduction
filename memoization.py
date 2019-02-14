@@ -18,13 +18,29 @@ def fib(n):
 #We write a memorizer cabaple of storing answers from a func
 #This memorizer returns a better version of a func that caches its own results
 
-def memo(fn):
+def memof(fn):
     cache = {}
     def proxy(*args):
         if args not in cache:
             cache[args] = fn(*args)
         return cache[args]
     return proxy
+
+
+#The same memoizer returned as a class
+class memo():
+    
+    def __init__(self, fn):
+        self._cache = {}
+        self._fn = fn
+        
+    def __call__(self, *args):
+        if args not in self._cache:
+            self._cache[args] = self._fn(*args)
+        return self._cache[args]
+    
+    
+    
 
 def time(func, *args, **kwds):
     start = timer()
