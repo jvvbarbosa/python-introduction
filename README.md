@@ -21,3 +21,11 @@ python 2 truncates 3/2 to 1 while python 3 does not and gives 1.5
 
 4) Alternative channel for information flow out of functions
 
+
+
+
+\** Unit testing **
+
+module unittest
+
+or (far better) pytest
