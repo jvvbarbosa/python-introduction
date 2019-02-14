@@ -29,6 +29,9 @@ class EmergencyQueue(Queue):
         
 class NoisyQueue(Queue):
     
+    def __call__(self):
+        print('I am an extremely noisy queue! WAAAAAAAA')
+        
     def add(self, item):
         Queue.add(self, item)
         print('Added the following item to queue:', item)
