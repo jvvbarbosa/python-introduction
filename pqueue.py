@@ -45,7 +45,7 @@ class PriorityQueue_very_slow():
             
             
 
-class PriorityQueue():
+class PriorityQueue_fast():
 
     def add(self, a, b=2):
         if not (0 <= b <= 4):
@@ -63,5 +63,30 @@ class PriorityQueue():
         for q in self._q:
             if q:
                 return q.pop(0)
+        else:
+            raise EmptyQueue('There are no elements in the queue')
+            
+            
+            
+            
+from collections import deque
+class PriorityQueue():
+
+    def add(self, a, b=2):
+        if not (0 <= b <= 4):
+            raise ValueError('Priority out of bounds', b)
+        self._q[b].append(a)
+            
+        
+    def __init__(self):
+        self._q = (deque(), deque(),deque(),deque(),deque()) #Double ended queues are more performant cause they only append or pop from the ends
+ 
+    def __len__(self):
+        return sum(map(len, self._q))
+        
+    def pop(self):
+        for q in self._q:
+            if q:
+                return q.popleft()
         else:
             raise EmptyQueue('There are no elements in the queue')
