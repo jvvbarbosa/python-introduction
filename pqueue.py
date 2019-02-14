@@ -80,7 +80,8 @@ class PriorityQueue():
         
     def __init__(self):
         #self._q = (deque(), deque(), deque(), deque(), deque()) 
-        self._q = tuple([deque() for _ in range(5)])
+        #self._q = tuple([deque() for _ in range(5)])
+        self._q = tuple( deque() for _ in range(5) )#This is a bit faster because it doesnt create a list to then tuple it
  
     def __len__(self):
         return sum(map(len, self._q))
