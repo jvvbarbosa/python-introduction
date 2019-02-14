@@ -29,3 +29,5 @@ class AddCounter(Counter):
     
     def __add__(self, other):
         return AddCounter(self.count+other.count)
+    
+    __radd__ = __add__

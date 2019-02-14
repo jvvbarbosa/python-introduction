@@ -6,19 +6,23 @@ Created on Wed Feb 13 16:43:52 2019
 @author: trn2503
 """
 
+class QueueIsEmpty(Exception):
+    pass
+
+
 class Queue:
     
     def __init__(self):
-        self.queue = []
+        self._queue = []
         
     def add(self, item):
-        self.queue.append(item)
+        self._queue.append(item)
         
     def pop(self):
         try:
-            return self.queue.pop(0)
+            return self._queue.pop(0)
         except IndexError:
-            raise
+            raise QueueIsEmpty('There are no elements in the queue')
             
             
             
