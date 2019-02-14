@@ -29,3 +29,34 @@ python 2 truncates 3/2 to 1 while python 3 does not and gives 1.5
 module unittest
 
 or (far better) pytest
+
+
+
+\** for performance enhacement look for Cython or Numba **
+
+Cython converts stuff into C 
+Numba speeds up mathematical operations
+
+Using Numba:
+
+from numba import jit
+
+@jit
+def math_fn() #This now runs super fast
+
+
+
+\** @property **
+
+In a class putting 
+@property
+def fn(self)
+
+makes is possible to call a function as if it were data 
+
+Class bla()
+...
+
+a = bla()
+
+bla.fn  #This is good
