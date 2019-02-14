@@ -79,7 +79,8 @@ class PriorityQueue():
             
         
     def __init__(self):
-        self._q = (deque(), deque(),deque(),deque(),deque()) #Double ended queues are more performant cause they only append or pop from the ends
+        #self._q = (deque(), deque(), deque(), deque(), deque()) 
+        self._q = tuple([deque() for _ in range(5)])
  
     def __len__(self):
         return sum(map(len, self._q))
