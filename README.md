@@ -60,3 +60,6 @@ Class bla()
 a = bla()
 
 bla.fn  #This is good
+
+
+LOOK INTO DECORATORS
